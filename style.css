@@ -88,11 +88,27 @@ nav {
 }
 
 .hero-image img {
-  width: 280px;
-  height: 280px;
+  width: 380px;
+  height: 380px;
   object-fit: cover;
   object-position: center top;
   border-radius: 50%;
+}
+
+.hero-image-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-image-ring {
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  width: 412px;
+  height: 412px;
+  border-radius: 50%;
+  border: 2px solid rgba(139, 26, 26, 0.25);
+  pointer-events: none;
 }
 
 
@@ -526,7 +542,8 @@ footer p {
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-text { padding: 7rem 1.5rem 3rem; }
   .hero-image { padding: 2rem 0; }
-  .hero-image img { width: 200px; height: 200px; }
+  .hero-image::before { width: 300px; height: 300px; }
+  .hero-image img { width: 260px; height: 260px; }
   .intro { padding: 4rem 1.5rem; }
   .what { padding: 4rem 1.5rem; }
   .what-inner { grid-template-columns: 1fr; gap: 2rem; }
