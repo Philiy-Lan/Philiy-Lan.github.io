@@ -537,24 +537,48 @@ footer p {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  nav { padding: 1.2rem 1.5rem; }
-  .nav-links { display: none; }
+  /* NAV — show links inline, smaller */
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .nav-links a { font-size: 0.7rem; }
+
+  /* HERO — image first, text below */
   .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-text { padding: 7rem 1.5rem 3rem; }
-  .hero-image { padding: 2rem 0; }
-  .hero-image::before { width: 300px; height: 300px; }
-  .hero-image img { width: 260px; height: 260px; }
-  .intro { padding: 4rem 1.5rem; }
-  .what { padding: 4rem 1.5rem; }
+  .hero-text { padding: 2rem 1.5rem 3rem; order: 2; }
+  .hero-image { padding: 6rem 0 1rem; order: 1; }
+  .hero-image img { width: 220px; height: 220px; }
+  .hero-image-ring { width: 252px; height: 252px; top: -16px; left: -16px; }
+  .hero-headline { font-size: 2rem; }
+  .hero-eyebrow { margin-bottom: 1.2rem; }
+  .hero-sub { margin-bottom: 2rem; }
+
+  /* ABOUT */
+  .intro { padding: 3.5rem 1.5rem; }
+
+  /* WHAT I DO */
+  .what { padding: 3.5rem 1.5rem; }
   .what-inner { grid-template-columns: 1fr; gap: 2rem; }
   .what-pillars { grid-template-columns: 1fr; }
-  .speaking { padding: 4rem 1.5rem; }
+
+  /* SPEAKING */
+  .speaking { padding: 3.5rem 1.5rem; }
   .speaking-header { flex-direction: column; gap: 0.5rem; }
   .talks-grid { grid-template-columns: 1fr; }
-  .credentials { padding: 3rem 1.5rem; }
-  .credentials-inner { flex-direction: column; gap: 2rem; }
-  .testimonials { padding: 4rem 1.5rem; }
+
+  /* CREDENTIALS — 2-col grid */
+  .credentials { padding: 2.5rem 1.5rem; }
+  .credentials-inner { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+  .credentials-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 3.5rem 1.5rem; }
   .testimonials-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .contact { padding: 4rem 1.5rem; }
+  .testimonials-label { margin-bottom: 2rem; }
+
+  /* CONTACT */
+  .contact { padding: 3.5rem 1.5rem; }
+  .contact-email { font-size: 1rem; word-break: break-all; }
+
+  /* FOOTER */
   footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
 }
