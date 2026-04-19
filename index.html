@@ -50,7 +50,10 @@
     <div class="hero-image">
       <div class="hero-image-wrap">
         <div class="hero-image-ring"></div>
-        <img src="philiy-headshot.jpeg" alt="Philiy Lander">
+        <picture>
+          <source srcset="philiy-headshot.avif" type="image/avif">
+          <img src="philiy-headshot.jpeg" alt="Philiy Lander" width="600" height="760" fetchpriority="high" decoding="async">
+        </picture>
       </div>
     </div>
   </section>
