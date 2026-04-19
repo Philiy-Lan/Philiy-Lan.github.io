@@ -244,7 +244,7 @@
     <div class="callout-title">How to use this guide</div>
     <ul>
       <li>Terms run A-Z. Use the letter nav to jump to what you need.</li>
-      <li>Each entry has a plain definition, a real-world analogy, and a PM takeaway.</li>
+      <li>Each entry has a plain definition, a real-world analogy, and a product manager takeaway.</li>
       <li>No maths. No code. Just enough to be dangerous in the right way.</li>
     </ul>
   </div>
@@ -292,7 +292,7 @@
       The difference between asking a colleague "what's our Q3 revenue?" (one question, one answer) and "prepare the Q3 board pack" (pull data, build slides, check with finance, send for review). An agent handles the second kind of request.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Agentic products need different UX thinking. When does the agent ask for permission? What happens when it fails mid-task? How do users understand and trust what the agent did? Product problems as much as technical ones.
     </div>
   </div>
@@ -310,7 +310,7 @@
       If you only ever interviewed customers at your London office, your "user insights" would skew towards a specific demographic. AI bias works the same way. The model's worldview is limited to the data it was trained on.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Bias isn't a bug you fix once. It's a quality dimension you monitor. Actively ask: whose perspective is over-represented? Whose is missing? Test AI features across demographics, geographies, and usage patterns before launch.
     </div>
   </div>
@@ -328,7 +328,7 @@
       Like asking someone to show their working in a maths test. It doesn't just help the marker. It helps the student catch their own mistakes. Writing out the steps reduces errors.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       For any AI feature where accuracy really matters (analysis, recommendations, decisions), consider prompting for CoT. It adds latency and tokens, but reduces hallucinations on complex tasks. A real quality-speed tradeoff to make consciously.
     </div>
   </div>
@@ -343,7 +343,7 @@
       Like a whiteboard in a meeting room. The model can only work with what's on the whiteboard right now. Once it's full, something has to be erased to add something new.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Context window size determines what use cases are viable. Summarising a 100-page document needs a large window. Short chat replies don't. This affects which model you choose, and what you pay.
     </div>
   </div>
@@ -361,7 +361,7 @@
       A calculator is deterministic. 2+2 always equals 4. A weather forecast is probabilistic. It predicts the most likely outcome based on patterns, but tomorrow might surprise you. AI works more like the forecast.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       This shift changes how you write specs, define success metrics, and think about QA. AI features can't be tested with simple pass/fail. They need evaluation frameworks, confidence thresholds, feedback loops. If you understand one concept from AI, make it this one.
     </div>
   </div>
@@ -379,7 +379,7 @@
       Imagine plotting every document in your knowledge base on a map. Similar topics cluster together. Embeddings create that map. When a user asks a question, you find the nearest cluster and retrieve those documents.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Embeddings are the technology behind "find similar content," semantic search, and RAG. You don't need the maths. Just know it's what makes meaning-based search possible.
     </div>
   </div>
@@ -394,8 +394,8 @@
       QA testing for software, but for judgement. Instead of checking if the button works, you're checking if the AI said something sensible, accurate, and safe, at scale, automatically.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
-      Owning evals is becoming a core PM responsibility. If you can't measure output quality automatically, you can't ship AI features with confidence. Start by defining what "good" looks like, then work with your team to automate that check.
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
+      Owning evals is becoming a core product manager responsibility. If you can't measure output quality automatically, you can't ship AI features with confidence. Start by defining what "good" looks like, then work with your team to automate that check.
     </div>
   </div>
 
@@ -412,7 +412,7 @@
       RAG is giving an employee a reference manual to consult on the job. Fine-tuning is putting them through a six-month specialist training programme. It changes how they think, not just what they look up.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Default to RAG first. Only invest in fine-tuning once you have strong task clarity, sufficient labelled data (thousands of examples), and evidence that RAG isn't getting you close enough. Fine-tuning costs roughly 6x more to run than prompting a base model.
     </div>
   </div>
@@ -430,8 +430,8 @@
       Traditional AI is a librarian who finds and organises existing books. Generative AI is an author who writes new ones. Both are useful, but the second raises different questions about accuracy, originality, and trust.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
-      Most AI features PMs are building today are generative: drafting content, summarising documents, creating recommendations. Generative models are optimised to produce plausible outputs, not verified ones. That distinction drives most of your product design decisions around AI quality.
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
+      Most AI features product managers are building today are generative: drafting content, summarising documents, creating recommendations. Generative models are optimised to produce plausible outputs, not verified ones. That distinction drives most of your product design decisions around AI quality.
     </div>
   </div>
 
@@ -445,8 +445,8 @@
       Like bumpers in a bowling lane. The model can still move freely within the lane, but the guardrails stop it going somewhere it shouldn't. They don't make the AI smarter. They make it safer to deploy.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
-      Guardrails are a product decision, not just a technical one. What topics should your AI refuse? What tone is off-limits? What happens when a guardrail fires: does the user get a helpful error or a confusing non-answer? UX and risk questions that PMs own.
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
+      Guardrails are a product decision, not just a technical one. What topics should your AI refuse? What tone is off-limits? What happens when a guardrail fires: does the user get a helpful error or a confusing non-answer? UX and risk questions that product managers own.
     </div>
   </div>
 
@@ -463,7 +463,7 @@
       Asking a brilliant but overconfident colleague to fill in a report. They'll give you something that looks great, but they may have made up the bits they didn't know, and they won't flag which is which.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Hallucination is the primary quality risk for AI products that present information as fact. Your eval strategy, your RAG setup, and your UI design should all account for it.
     </div>
   </div>
@@ -478,7 +478,7 @@
       If your customer support agent gets the answer wrong 5% of the time and users can't tell which 5%, you have a trust problem, not just a quality problem.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Define your acceptable hallucination rate before you launch. In low-stakes creative tools, some error is tolerable. In products where users rely on accuracy, you need grounding (RAG), citation, and human review workflows.
     </div>
   </div>
@@ -493,7 +493,7 @@
       Tracked changes in a document. The AI drafts the content. A human decides what to accept, reject, or amend before it goes out. AI speed, human judgement.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       HITL is often the right answer for high-stakes AI features, especially early in a product's life. It builds trust, generates labelled data for improvement, and gives you a safety net while you measure AI accuracy. Design the review workflow as carefully as the AI itself.
     </div>
   </div>
@@ -511,7 +511,7 @@
       Training is a student studying for an exam over months. Inference is the moment they sit down and answer the questions. All the learning happened beforehand. Inference is where it gets applied.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Inference is what you pay for at scale. Every API call to an LLM is an inference request. Understanding inference cost per query is essential for AI unit economics. Faster, cheaper inference (smaller models, caching, batching) directly impacts your margins.
     </div>
   </div>
@@ -529,7 +529,7 @@
       A very well-read assistant who has absorbed almost everything ever written, and can hold a conversation on virtually any topic. But learned entirely from text, with no lived experience.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       The LLM is the engine under the hood of most AI features. When you're choosing between OpenAI, Anthropic, or Google, you're choosing which LLM to build on.
     </div>
   </div>
@@ -544,7 +544,7 @@
       DevOps tells you if your servers are down or your API is slow. LLMOps tells you if your AI is getting worse, costing more than expected, or failing in ways your users haven't reported yet.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       You can't improve what you can't measure. Even if you don't configure it yourself, push for LLMOps tooling early. It's the difference between flying blind and having real data on how your AI feature is actually performing.
     </div>
   </div>
@@ -562,7 +562,7 @@
       A sales forecast model trained before a market shock. It keeps producing confident predictions, but the world has changed and the assumptions underneath no longer hold. Confidence doesn't equal accuracy.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Model drift is why AI products need ongoing monitoring, not just a launch plan. If your evals show quality declining without a prompt change or model update, drift is a likely cause. Build a feedback loop and set quality thresholds that trigger a review.
     </div>
   </div>
@@ -577,7 +577,7 @@
       Most early AI assistants could only read. Multimodal AI can read, see, and hear, opening up a much wider range of real-world use cases.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Ask whether your use cases are purely text-based, or whether vision (images, screenshots, documents) or audio could unlock meaningfully better experiences. Most leading models now support multimodal inputs at no extra complexity.
     </div>
   </div>
@@ -592,7 +592,7 @@
       Before USB, every device had its own proprietary cable. MCP does the same thing for AI integrations. Instead of building a custom connector for every tool your AI needs to use, you plug into one standard protocol and it just works.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       MCP lowers the cost of connecting AI features to existing tools and data. Instead of bespoke integrations, you adopt MCP-compatible servers and let your AI access Slack, databases, or internal APIs through a standard interface. Your AI product can gain new capabilities without new engineering work, just by adding new MCP servers.
     </div>
   </div>
@@ -610,8 +610,8 @@
       Writing a great job brief. The clearer, more specific, and better-structured your brief, the better the work you'll get back. Vague in, vague out.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
-      Prompt engineering is now a core PM skill. The system prompt (the hidden instruction that shapes how a product's AI behaves) is effectively your product spec for every AI interaction.
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
+      Prompt engineering is now a core product manager skill. The system prompt (the hidden instruction that shapes how a product's AI behaves) is effectively your product spec for every AI interaction.
     </div>
   </div>
 
@@ -625,7 +625,7 @@
       A customer calls your helpline and convinces the agent to ignore their training and reveal confidential information by framing it as an internal audit. The agent was told one thing. A clever caller found a way around it.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Include prompt injection in your threat model before launch. Work with security to test it. Consider what data or actions your AI can access. If an injected prompt can exfiltrate data or take real-world actions, the risk is serious. Limit the blast radius by scoping what the AI is allowed to do.
     </div>
   </div>
@@ -640,8 +640,8 @@
       A smoke detector set to maximum sensitivity (high recall) catches every fire but also goes off when you make toast. One set to maximum precision only sounds when there's a real fire, but might miss a small one. Neither is universally right. It depends on the stakes.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
-      This is a PM decision, not a data science one. For medical diagnostics or fraud detection, maximise recall. Missing a case is worse than a false alarm. For recommendations or notifications, maximise precision. Noise erodes trust. Know which trade-off your feature needs.
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
+      This is a product manager decision, not a data science one. For medical diagnostics or fraud detection, maximise recall. Missing a case is worse than a false alarm. For recommendations or notifications, maximise precision. Noise erodes trust. Know which trade-off your feature needs.
     </div>
   </div>
 
@@ -658,7 +658,7 @@
       Instead of answering from memory, the AI first looks things up in your filing cabinet, reads the relevant pages, then gives you an answer based on what it actually found. Much harder to make things up when you're working from a source document.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       RAG is the default starting point for most enterprise AI features. Faster and cheaper than fine-tuning, handles real-time data, and makes responses more explainable. If a user asks "why did you say that?", you can show them the source.
     </div>
   </div>
@@ -676,8 +676,8 @@
       The employee handbook your AI has already read before starting its first shift. It determines how the AI behaves across every customer interaction.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
-      Writing and iterating on your system prompt is one of the highest-leverage things a PM can do. It's the difference between a generic AI and a well-designed product experience.
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
+      Writing and iterating on your system prompt is one of the highest-leverage things a product manager can do. It's the difference between a generic AI and a well-designed product experience.
     </div>
   </div>
 
@@ -691,7 +691,7 @@
       Supervised learning is a teacher marking a student's homework. Correct answers are provided, and the student learns from the feedback. Unsupervised learning is giving a student a box of unlabelled photos and asking them to sort them into groups. They figure out the categories themselves.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       The distinction matters when scoping AI features. Supervised learning needs labelled training data (expensive, but results are predictable). Unsupervised learning can find patterns you didn't know existed, but outputs need interpretation. Ask your team: do we have labelled data, and is it enough?
     </div>
   </div>
@@ -709,7 +709,7 @@
       A dial between "by the book" and "freestyle." For a customer support bot, you want low temperature. For a creative writing assistant, higher temperature produces more interesting results.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Temperature is a product decision, not just a technical one. The right setting depends on your use case. Predictability and creativity are in tension. You can't maximise both.
     </div>
   </div>
@@ -724,7 +724,7 @@
       Tokens are like the pages of a notepad. The model can only "see" the text that fits on its notepad at once. Anything beyond that gets cut off.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       Token limits affect what you can put in a prompt and what you get back. Longer conversations, documents, and outputs all cost more. Token cost is how you calculate AI unit economics.
     </div>
   </div>
@@ -741,7 +741,7 @@
       <span class="term-analogy-label">Analogy</span>
       A normal database is a filing cabinet with labelled folders. You have to know exactly what you're looking for. A vector database is a really smart librarian who can say "you asked about X, but these five documents are the most relevant to what you actually need."</div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       If your product needs to search through proprietary documents, knowledge bases, or large content libraries, you'll likely need a vector database. It's infrastructure. Your job is to understand what problem it solves and what the cost implications are.
     </div>
   </div>
@@ -759,7 +759,7 @@
       Zero-shot is asking a new hire to write a customer email without showing them any previous emails. Few-shot is showing them three good examples first and saying "match this tone and structure." The examples do a lot of the work.
     </div>
     <div class="term-pm-note">
-      <span class="term-pm-note-label">PM Takeaway</span>
+      <span class="term-pm-note-label">Product Manager Takeaway</span>
       When your AI feature isn't producing outputs in the right format or tone, try adding two or three examples directly in your system prompt. It often beats hours of prompt rewording.
     </div>
   </div>
