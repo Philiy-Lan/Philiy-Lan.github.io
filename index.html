@@ -22,7 +22,11 @@
 
   <nav>
     <a href="#" class="nav-name">Philiy Lander</a>
-    <ul class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+    </button>
+    <ul class="nav-links" id="primary-nav">
       <li><a href="#about">About</a></li>
       <li><a href="ai-jargon.html">AI Resources</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -142,6 +146,30 @@
   <script>
     (function () {
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Mobile hamburger menu
+      var navToggle = document.querySelector('.nav-toggle');
+      var body = document.body;
+      function closeNav() {
+        body.classList.remove('nav-open');
+        if (navToggle) {
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.setAttribute('aria-label', 'Open menu');
+        }
+      }
+      if (navToggle) {
+        navToggle.addEventListener('click', function () {
+          var isOpen = body.classList.toggle('nav-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+          navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
+      }
+      document.querySelectorAll('.nav-links a').forEach(function (link) {
+        link.addEventListener('click', closeNav);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && body.classList.contains('nav-open')) closeNav();
+      });
 
       if (!prefersReducedMotion && 'IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
