@@ -482,19 +482,6 @@ nav {
   margin-bottom: 2.5rem;
 }
 
-.contact-email {
-  display: inline-block;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--off-white);
-  text-decoration: none;
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.3rem;
-  transition: color 0.2s;
-}
-
-.contact-email:hover { color: var(--accent-light); }
-
 .social-links {
   display: flex;
   justify-content: center;
@@ -577,7 +564,6 @@ footer p {
 
   /* CONTACT */
   .contact { padding: 3.5rem 1.5rem; }
-  .contact-email { font-size: 1rem; word-break: break-all; }
 
   /* FOOTER */
   footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }

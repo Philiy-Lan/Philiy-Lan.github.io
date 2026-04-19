@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Jargon Decoded — Philiy Lander</title>
+  <meta name="description" content="Plain-English definitions of the AI terms every Product Manager needs to know. No PhD required.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Reading progress */
+    .reading-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0;
+      background: var(--accent); z-index: 101; transition: width 0.1s ease-out;
+    }
+
+    /* Article shell */
+    .article-hero {
+      padding: 9rem 4rem 4rem;
+      max-width: 880px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--light-line);
+    }
+    .article-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--mid); text-decoration: none; font-weight: 500;
+      margin-bottom: 2.5rem; transition: color 0.2s;
+    }
+    .article-back:hover { color: var(--accent); }
+    .article-back svg { width: 10px; height: 10px; }
+
+    .article-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;
+    }
+    .article-title {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+      color: var(--dark); margin-bottom: 1.25rem;
+    }
+    .article-deck {
+      font-size: 1.15rem; line-height: 1.65; color: var(--mid);
+      max-width: 640px; margin-bottom: 2rem;
+    }
+    .article-meta {
+      font-size: 0.78rem; letter-spacing: 0.05em;
+      color: var(--mid);
+    }
+    .article-meta span { margin: 0 0.5rem; color: var(--light-line); }
+
+    /* Body */
+    .article {
+      max-width: 720px; margin: 0 auto; padding: 4rem 4rem 5rem;
+      font-size: 1.05rem; line-height: 1.8; color: var(--dark);
+    }
+    .article > p { margin-bottom: 1.5rem; color: #3a3a36; }
+    .article > p:first-of-type {
+      font-size: 1.2rem; line-height: 1.6;
+      color: var(--dark); font-weight: 500;
+    }
+
+    /* Callout */
+    .callout {
+      background: #f0ede8; border-left: 3px solid var(--accent);
+      padding: 1.75rem 2rem; margin: 2.5rem 0; border-radius: 0 4px 4px 0;
+    }
+    .callout-title {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 1rem;
+    }
+    .callout ul { list-style: none; padding: 0; }
+    .callout li {
+      font-size: 0.95rem; line-height: 1.7; color: var(--dark);
+      padding-left: 1.25rem; position: relative; margin-bottom: 0.5rem;
+    }
+    .callout li::before {
+      content: ""; position: absolute; left: 0; top: 0.75rem;
+      width: 6px; height: 1px; background: var(--accent);
+    }
+
+    /* Alphabet nav */
+    .alpha-nav {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.15rem;
+      padding: 0.75rem 1rem;
+      background: transparent;
+      border-top: 1px solid var(--light-line);
+      border-bottom: 1px solid var(--light-line);
+      margin: 2rem 0 2.5rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .alpha-nav a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; font-size: 0.72rem; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+      transition: all 0.15s;
+    }
+    .alpha-nav a:hover {
+      background: var(--accent); color: var(--off-white);
+    }
+    .alpha-nav a.disabled {
+      color: #c8c5bf; pointer-events: none;
+    }
+
+    /* Letter heading */
+    .letter-heading {
+      font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--accent); margin: 3.5rem 0 1rem;
+      padding-bottom: 0.75rem; border-bottom: 1px solid var(--light-line);
+      scroll-margin-top: 100px;
+    }
+
+    /* Term card */
+    .term-card {
+      border-top: 1px solid var(--light-line);
+      padding: 2rem 0; margin: 0;
+    }
+    .term-card:last-child { border-bottom: 1px solid var(--light-line); }
+
+    .term-badge {
+      display: inline-block; font-size: 0.68rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 0.25rem 0.6rem; margin-bottom: 1rem;
+      border: 1px solid currentColor;
+    }
+    .term-badge.accent { color: var(--accent); }
+    .term-badge.warn { color: #8a5a00; }
+    .term-badge.neutral { color: var(--mid); }
+
+    .term-name {
+      font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--dark); margin-bottom: 0.35rem;
+    }
+    .term-aka {
+      font-size: 0.85rem; color: var(--mid); font-style: italic;
+      margin-bottom: 1.2rem;
+    }
+    .term-def {
+      font-size: 1rem; line-height: 1.75; color: #3a3a36;
+      margin-bottom: 1.25rem;
+    }
+    .term-def strong { color: var(--dark); font-weight: 600; }
+
+    .term-analogy {
+      background: #f0ede8; padding: 1.25rem 1.5rem;
+      font-size: 0.95rem; line-height: 1.7; color: #3a3a36;
+      margin: 1rem 0;
+    }
+    .term-analogy-label {
+      display: block; font-size: 0.68rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600; color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .term-pm-note {
+      border-left: 2px solid var(--accent); padding: 0.25rem 0 0.25rem 1.25rem;
+      font-size: 0.95rem; line-height: 1.7; color: #3a3a36;
+      margin-top: 1rem;
+    }
+    .term-pm-note-label {
+      display: block; font-size: 0.68rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600; color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Section header */
+    .section-header {
+      display: flex; align-items: baseline; gap: 1rem;
+      margin: 4rem 0 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--light-line);
+    }
+    .section-num {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+    }
+    .section-header h2 {
+      font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--dark);
+    }
+
+    /* Cheat sheet */
+    .cheat-sheet li {
+      font-size: 0.92rem; line-height: 1.7;
+      padding-left: 1.25rem; margin-bottom: 0.65rem;
+    }
+    .cheat-sheet li strong {
+      color: var(--dark); font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .article-hero { padding: 7rem 1.5rem 2.5rem; }
+      .article { padding: 2.5rem 1.5rem 3.5rem; }
+      .article-title { font-size: 2rem; }
+      .article-deck { font-size: 1rem; }
+      .letter-heading { font-size: 2rem; }
+      .term-name { font-size: 1.2rem; }
+      .alpha-nav { padding: 0.6rem 0.5rem; max-width: 100%; }
+      .alpha-nav a { width: 22px; height: 22px; font-size: 0.7rem; }
+    }
+  </style>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b2539de1b3ea49faa1dd61a0ccc1528f"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<div class="reading-progress" id="reading-progress"></div>
+
+<nav>
+  <a href="index.html" class="nav-name">Philiy Lander</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="ai-jargon.html">AI Resources</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="article-hero">
+  <a href="index.html" class="article-back">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2L4 8l6 6"/></svg>
+    Back
+  </a>
+  <p class="article-eyebrow">A Field Guide</p>
+  <h1 class="article-title">AI Jargon Decoded</h1>
+  <p class="article-deck">Plain-English definitions of the AI terms every Product Manager needs to know. No PhD required.</p>
+  <p class="article-meta">Philiy Lander <span>·</span> 15 min read</p>
+</header>
+
+<!-- ARTICLE -->
+<article class="article">
+
+  <p>AI conversations move fast, and the jargon moves faster. If you've ever nodded along in a meeting while privately Googling "what is a vector database," this is for you.</p>
+
+  <p>These are the terms that come up in AI product work, explained in plain English, with the context that actually matters when you're the one making the call.</p>
+
+  <div class="callout">
+    <div class="callout-title">How to use this guide</div>
+    <ul>
+      <li>Terms run A-Z. Use the letter nav to jump to what you need.</li>
+      <li>Each entry has a plain definition, a real-world analogy, and a PM takeaway.</li>
+      <li>No maths. No code. Just enough to be dangerous in the right way.</li>
+    </ul>
+  </div>
+
+  <!-- ALPHABET NAV -->
+  <div class="alpha-nav" role="navigation" aria-label="Jump to letter">
+    <a href="#letter-A">A</a>
+    <a href="#letter-B">B</a>
+    <a href="#letter-C">C</a>
+    <a href="#letter-D">D</a>
+    <a href="#letter-E">E</a>
+    <a href="#letter-F">F</a>
+    <a href="#letter-G">G</a>
+    <a href="#letter-H">H</a>
+    <a href="#letter-I">I</a>
+    <a class="disabled">J</a>
+    <a class="disabled">K</a>
+    <a href="#letter-L">L</a>
+    <a href="#letter-M">M</a>
+    <a class="disabled">N</a>
+    <a class="disabled">O</a>
+    <a href="#letter-P">P</a>
+    <a class="disabled">Q</a>
+    <a href="#letter-R">R</a>
+    <a href="#letter-S">S</a>
+    <a href="#letter-T">T</a>
+    <a class="disabled">U</a>
+    <a href="#letter-V">V</a>
+    <a class="disabled">W</a>
+    <a class="disabled">X</a>
+    <a class="disabled">Y</a>
+    <a href="#letter-Z">Z</a>
+  </div>
+
+  <!-- A -->
+  <h3 class="letter-heading" id="letter-A">A</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Emerging</div>
+    <div class="term-name">AI Agent</div>
+    <div class="term-aka">Also called: agentic AI, autonomous agent</div>
+    <p class="term-def">An AI system that doesn't just respond to a single prompt. It takes a sequence of actions to accomplish a goal. Agents can use tools (web search, code execution, sending emails), plan multi-step workflows, and make decisions along the way. Instead of one question and one answer, an agent might take ten steps to complete a task you described at a high level.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      The difference between asking a colleague "what's our Q3 revenue?" (one question, one answer) and "prepare the Q3 board pack" (pull data, build slides, check with finance, send for review). An agent handles the second kind of request.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Agentic products need different UX thinking. When does the agent ask for permission? What happens when it fails mid-task? How do users understand and trust what the agent did? Product problems as much as technical ones.
+    </div>
+  </div>
+
+  <!-- B -->
+  <h3 class="letter-heading" id="letter-B">B</h3>
+
+  <div class="term-card">
+    <div class="term-badge warn">Watch Out</div>
+    <div class="term-name">Bias (AI Bias)</div>
+    <div class="term-aka">Also called: algorithmic bias, model bias, training bias</div>
+    <p class="term-def">Systematic skew in a model's outputs, caused by patterns in its training data, the way it was built, or the way it's deployed. Models learn from human-generated data, which contains human biases. The model can inherit and amplify those biases at scale. It shows up in product work as personas that default to demographic assumptions, recommendation systems that reinforce existing patterns, hiring tools that favour certain groups.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      If you only ever interviewed customers at your London office, your "user insights" would skew towards a specific demographic. AI bias works the same way. The model's worldview is limited to the data it was trained on.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Bias isn't a bug you fix once. It's a quality dimension you monitor. Actively ask: whose perspective is over-represented? Whose is missing? Test AI features across demographics, geographies, and usage patterns before launch.
+    </div>
+  </div>
+
+  <!-- C -->
+  <h3 class="letter-heading" id="letter-C">C</h3>
+
+  <div class="term-card">
+    <div class="term-badge neutral">Nuanced</div>
+    <div class="term-name">Chain-of-Thought (CoT)</div>
+    <div class="term-aka">Also called: step-by-step reasoning, CoT prompting</div>
+    <p class="term-def">A prompting technique where you instruct the model to reason through a problem step by step before giving a final answer, rather than jumping straight to a conclusion. Adding "think step by step" or showing a worked example of reasoning in your prompt consistently improves accuracy on complex tasks, because it forces the model to slow down and check its own logic.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Like asking someone to show their working in a maths test. It doesn't just help the marker. It helps the student catch their own mistakes. Writing out the steps reduces errors.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      For any AI feature where accuracy really matters (analysis, recommendations, decisions), consider prompting for CoT. It adds latency and tokens, but reduces hallucinations on complex tasks. A real quality-speed tradeoff to make consciously.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Context Window</div>
+    <div class="term-aka">Also called: context length, max tokens</div>
+    <p class="term-def">The maximum amount of text an LLM can "see" and consider at one time, including both the input you send (prompt, conversation history, documents) and the output it generates. Modern models range from 8,000 tokens (about 6,000 words) to over a million tokens (roughly a small novel).</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Like a whiteboard in a meeting room. The model can only work with what's on the whiteboard right now. Once it's full, something has to be erased to add something new.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Context window size determines what use cases are viable. Summarising a 100-page document needs a large window. Short chat replies don't. This affects which model you choose, and what you pay.
+    </div>
+  </div>
+
+  <!-- D -->
+  <h3 class="letter-heading" id="letter-D">D</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Deterministic vs Probabilistic</div>
+    <div class="term-aka">Also called: rule-based vs statistical, predictable vs variable</div>
+    <p class="term-def">The fundamental distinction between traditional software and AI. <strong>Deterministic</strong> systems always produce the same output for the same input. A "sort by date" button always sorts by date. <strong>Probabilistic</strong> systems predict the most likely useful output based on patterns, and that output can vary between runs. AI is probabilistic. It can be brilliant, or it can be confidently wrong, and often you can't tell in advance which.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      A calculator is deterministic. 2+2 always equals 4. A weather forecast is probabilistic. It predicts the most likely outcome based on patterns, but tomorrow might surprise you. AI works more like the forecast.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      This shift changes how you write specs, define success metrics, and think about QA. AI features can't be tested with simple pass/fail. They need evaluation frameworks, confidence thresholds, feedback loops. If you understand one concept from AI, make it this one.
+    </div>
+  </div>
+
+  <!-- E -->
+  <h3 class="letter-heading" id="letter-E">E</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Embeddings</div>
+    <div class="term-aka">Also called: vector representations, semantic vectors</div>
+    <p class="term-def">A way of representing text (or images, audio, etc.) as a list of numbers that captures meaning. Two pieces of text with similar meaning will have similar numbers, so the system can find related content even if the exact words don't match. Embeddings are what power semantic search, searching by meaning rather than keyword.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Imagine plotting every document in your knowledge base on a map. Similar topics cluster together. Embeddings create that map. When a user asks a question, you find the nearest cluster and retrieve those documents.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Embeddings are the technology behind "find similar content," semantic search, and RAG. You don't need the maths. Just know it's what makes meaning-based search possible.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge neutral">Advanced</div>
+    <div class="term-name">Evals: Evaluation Framework</div>
+    <div class="term-aka">Also called: LLM evaluation, model evals</div>
+    <p class="term-def">A systematic way of testing the quality of a model's outputs. A test suite for AI behaviour. Evals measure things like: is the answer factually correct? Is it grounded in the source document? Is it harmful? Does it complete the task? A good eval framework runs automatically whenever you change a prompt or upgrade a model, catching regressions before they reach users.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      QA testing for software, but for judgement. Instead of checking if the button works, you're checking if the AI said something sensible, accurate, and safe, at scale, automatically.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Owning evals is becoming a core PM responsibility. If you can't measure output quality automatically, you can't ship AI features with confidence. Start by defining what "good" looks like, then work with your team to automate that check.
+    </div>
+  </div>
+
+  <!-- F -->
+  <h3 class="letter-heading" id="letter-F">F</h3>
+
+  <div class="term-card">
+    <div class="term-badge warn">Strategic Decision</div>
+    <div class="term-name">Fine-Tuning</div>
+    <div class="term-aka">Also called: model fine-tuning, task-specific training</div>
+    <p class="term-def">Taking a pre-trained LLM and training it further on your own data, to make it better at your particular task, domain, or style. Unlike RAG (which retrieves information at query time), fine-tuning bakes knowledge and behaviour into the model itself. It's more expensive, slower to iterate, and needs labelled training data, but can produce a highly specialised model.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      RAG is giving an employee a reference manual to consult on the job. Fine-tuning is putting them through a six-month specialist training programme. It changes how they think, not just what they look up.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Default to RAG first. Only invest in fine-tuning once you have strong task clarity, sufficient labelled data (thousands of examples), and evidence that RAG isn't getting you close enough. Fine-tuning costs roughly 6x more to run than prompting a base model.
+    </div>
+  </div>
+
+  <!-- G -->
+  <h3 class="letter-heading" id="letter-G">G</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Foundation</div>
+    <div class="term-name">Generative AI</div>
+    <div class="term-aka">Also called: GenAI, generative models</div>
+    <p class="term-def">Models that create new content (text, images, code, audio, video) rather than classifying, predicting, or analysing existing data. ChatGPT, Claude, Midjourney, and GitHub Copilot are all generative AI. The distinction is creative output. A spam filter classifies emails (not generative). A tool that writes email replies creates new content (generative).</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Traditional AI is a librarian who finds and organises existing books. Generative AI is an author who writes new ones. Both are useful, but the second raises different questions about accuracy, originality, and trust.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Most AI features PMs are building today are generative: drafting content, summarising documents, creating recommendations. Generative models are optimised to produce plausible outputs, not verified ones. That distinction drives most of your product design decisions around AI quality.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Guardrails</div>
+    <div class="term-aka">Also called: safety filters, content filters, output constraints</div>
+    <p class="term-def">Rules, filters, and constraints built around a model to control what it will and won't do. Preventing harmful outputs, keeping responses on-topic, enforcing brand and compliance requirements. Guardrails can be implemented at the prompt level (instructions in the system prompt), at the API level (moderation layers), or post-generation (filtering outputs before they reach users).</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Like bumpers in a bowling lane. The model can still move freely within the lane, but the guardrails stop it going somewhere it shouldn't. They don't make the AI smarter. They make it safer to deploy.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Guardrails are a product decision, not just a technical one. What topics should your AI refuse? What tone is off-limits? What happens when a guardrail fires: does the user get a helpful error or a confusing non-answer? UX and risk questions that PMs own.
+    </div>
+  </div>
+
+  <!-- H -->
+  <h3 class="letter-heading" id="letter-H">H</h3>
+
+  <div class="term-card">
+    <div class="term-badge warn">Watch Out</div>
+    <div class="term-name">Hallucination</div>
+    <div class="term-aka">Also called: confabulation, model error</div>
+    <p class="term-def">When an AI generates a confident-sounding response that is factually wrong. Inventing statistics, citing non-existent papers, stating false information as if it were true. Happens because LLMs are trained to produce plausible-sounding text, not to verify facts. They don't "know" things the way humans do. They predict probable word sequences.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Asking a brilliant but overconfident colleague to fill in a report. They'll give you something that looks great, but they may have made up the bits they didn't know, and they won't flag which is which.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Hallucination is the primary quality risk for AI products that present information as fact. Your eval strategy, your RAG setup, and your UI design should all account for it.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Key Metric</div>
+    <div class="term-name">Hallucination Rate</div>
+    <div class="term-aka">Also called: factual error rate, grounding score</div>
+    <p class="term-def">The percentage of AI responses that contain factually incorrect or fabricated information. Measuring it requires either human review of a sample of outputs, or an automated "LLM-as-a-judge" approach where another model checks outputs against ground truth. A hallucination rate of even 1-2% can be unacceptable in high-stakes contexts like medical or legal products.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      If your customer support agent gets the answer wrong 5% of the time and users can't tell which 5%, you have a trust problem, not just a quality problem.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Define your acceptable hallucination rate before you launch. In low-stakes creative tools, some error is tolerable. In products where users rely on accuracy, you need grounding (RAG), citation, and human review workflows.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Must Know</div>
+    <div class="term-name">Human-in-the-Loop (HITL)</div>
+    <div class="term-aka">Also called: human review, human oversight, hybrid AI</div>
+    <p class="term-def">A design pattern where a human reviews, corrects, or approves AI outputs before they have real-world impact. HITL sits on a spectrum. At one end, every AI output goes to a human before action. At the other, humans only review flagged or low-confidence outputs. The right level depends on the stakes. A typo suggestion needs no review. A credit decision almost certainly does.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Tracked changes in a document. The AI drafts the content. A human decides what to accept, reject, or amend before it goes out. AI speed, human judgement.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      HITL is often the right answer for high-stakes AI features, especially early in a product's life. It builds trust, generates labelled data for improvement, and gives you a safety net while you measure AI accuracy. Design the review workflow as carefully as the AI itself.
+    </div>
+  </div>
+
+  <!-- I -->
+  <h3 class="letter-heading" id="letter-I">I</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Inference</div>
+    <div class="term-aka">Also called: prediction, model inference, serving</div>
+    <p class="term-def">The moment a trained model is actually put to work, processing new input and generating an output. Training is the learning phase (expensive, done once or periodically). Inference is the doing phase (cheaper per call, happens every time a user interacts with the model). When someone asks ChatGPT a question, that's inference. Inference cost, latency, and throughput are key operational metrics for any AI product.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Training is a student studying for an exam over months. Inference is the moment they sit down and answer the questions. All the learning happened beforehand. Inference is where it gets applied.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Inference is what you pay for at scale. Every API call to an LLM is an inference request. Understanding inference cost per query is essential for AI unit economics. Faster, cheaper inference (smaller models, caching, batching) directly impacts your margins.
+    </div>
+  </div>
+
+  <!-- L -->
+  <h3 class="letter-heading" id="letter-L">L</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Foundation</div>
+    <div class="term-name">LLM: Large Language Model</div>
+    <div class="term-aka">Also called: foundation model, base model</div>
+    <p class="term-def">An AI system trained on enormous amounts of text to understand and generate human language. LLMs like GPT-4, Claude, and Gemini can write, summarise, translate, answer questions, and reason through problems, all by predicting what words should come next based on patterns learned from billions of documents.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      A very well-read assistant who has absorbed almost everything ever written, and can hold a conversation on virtually any topic. But learned entirely from text, with no lived experience.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      The LLM is the engine under the hood of most AI features. When you're choosing between OpenAI, Anthropic, or Google, you're choosing which LLM to build on.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Infrastructure</div>
+    <div class="term-name">LLMOps</div>
+    <div class="term-aka">Also called: AI observability, ML operations for LLMs</div>
+    <p class="term-def">The practice and tooling for deploying, monitoring, and improving LLM-based applications in production. LLMOps covers tracking every AI request and response (tracing), monitoring cost and latency, running evaluations, versioning prompts, and detecting when model quality degrades. Common tools include Langfuse, Braintrust, and Helicone.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      DevOps tells you if your servers are down or your API is slow. LLMOps tells you if your AI is getting worse, costing more than expected, or failing in ways your users haven't reported yet.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      You can't improve what you can't measure. Even if you don't configure it yourself, push for LLMOps tooling early. It's the difference between flying blind and having real data on how your AI feature is actually performing.
+    </div>
+  </div>
+
+  <!-- M -->
+  <h3 class="letter-heading" id="letter-M">M</h3>
+
+  <div class="term-card">
+    <div class="term-badge neutral">Nuanced</div>
+    <div class="term-name">Model Drift</div>
+    <div class="term-aka">Also called: data drift, distribution shift, concept drift</div>
+    <p class="term-def">The gradual degradation of a model's accuracy over time, as the real-world data it encounters diverges from the data it was trained on. A model trained on user behaviour from 2022 may perform poorly in 2025 if user needs, language, or patterns have changed. Drift is invisible unless you're actively measuring output quality over time.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      A sales forecast model trained before a market shock. It keeps producing confident predictions, but the world has changed and the assumptions underneath no longer hold. Confidence doesn't equal accuracy.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Model drift is why AI products need ongoing monitoring, not just a launch plan. If your evals show quality declining without a prompt change or model update, drift is a likely cause. Build a feedback loop and set quality thresholds that trigger a review.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge neutral">Strategy</div>
+    <div class="term-name">Multimodal AI</div>
+    <div class="term-aka">Also called: vision-language models, audio-language models</div>
+    <p class="term-def">Models that can work with more than one type of data. Understanding both text and images (like GPT-4o or Gemini), or processing audio alongside text. A multimodal model can look at a photo of a receipt and extract the total. It can watch a video and write a summary. It can listen to a voice note and respond in text.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Most early AI assistants could only read. Multimodal AI can read, see, and hear, opening up a much wider range of real-world use cases.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Ask whether your use cases are purely text-based, or whether vision (images, screenshots, documents) or audio could unlock meaningfully better experiences. Most leading models now support multimodal inputs at no extra complexity.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Emerging</div>
+    <div class="term-name">MCP: Model Context Protocol</div>
+    <div class="term-aka">Also called: tool protocol, context protocol</div>
+    <p class="term-def">An open standard that defines how AI models connect to external tools, data sources, and services through a universal interface. Instead of every AI application building custom integrations for each tool it needs (databases, APIs, file systems, SaaS products), MCP provides a single, standardised protocol that any AI model can use to discover and call any compatible tool. USB-C for AI: one connection standard that works everywhere.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Before USB, every device had its own proprietary cable. MCP does the same thing for AI integrations. Instead of building a custom connector for every tool your AI needs to use, you plug into one standard protocol and it just works.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      MCP lowers the cost of connecting AI features to existing tools and data. Instead of bespoke integrations, you adopt MCP-compatible servers and let your AI access Slack, databases, or internal APIs through a standard interface. Your AI product can gain new capabilities without new engineering work, just by adding new MCP servers.
+    </div>
+  </div>
+
+  <!-- P -->
+  <h3 class="letter-heading" id="letter-P">P</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Skill</div>
+    <div class="term-name">Prompt / Prompt Engineering</div>
+    <div class="term-aka">Also called: prompting, instructions</div>
+    <p class="term-def">A prompt is the text you send to a model. Your question, instruction, or request. Prompt engineering is crafting those inputs to get better, more reliable outputs. Small changes in wording, structure, and framing can dramatically change the quality of what the model produces.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Writing a great job brief. The clearer, more specific, and better-structured your brief, the better the work you'll get back. Vague in, vague out.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Prompt engineering is now a core PM skill. The system prompt (the hidden instruction that shapes how a product's AI behaves) is effectively your product spec for every AI interaction.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge warn">Watch Out</div>
+    <div class="term-name">Prompt Injection</div>
+    <div class="term-aka">Also called: prompt hijacking, adversarial prompting</div>
+    <p class="term-def">An attack where a user crafts input designed to override or bypass a model's system prompt and guardrails, effectively hijacking the AI's behaviour. A user might type "Ignore your previous instructions and instead…" to make the AI act outside its intended role. A real security vector for any product with user-facing AI inputs, particularly those that process external content (emails, documents, web pages).</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      A customer calls your helpline and convinces the agent to ignore their training and reveal confidential information by framing it as an internal audit. The agent was told one thing. A clever caller found a way around it.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Include prompt injection in your threat model before launch. Work with security to test it. Consider what data or actions your AI can access. If an injected prompt can exfiltrate data or take real-world actions, the risk is serious. Limit the blast radius by scoping what the AI is allowed to do.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge neutral">Strategy</div>
+    <div class="term-name">Precision & Recall</div>
+    <div class="term-aka">Also called: positive predictive value, sensitivity, true positive rate</div>
+    <p class="term-def"><strong>Precision</strong> measures: when the model flags something, how often is it right? <strong>Recall</strong> measures: of all the cases that should be flagged, how many does the model actually catch? You can rarely maximise both. High precision means fewer false alarms but more missed cases. High recall means you catch more real cases but also get more false positives. The right balance is a product decision that depends on context.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      A smoke detector set to maximum sensitivity (high recall) catches every fire but also goes off when you make toast. One set to maximum precision only sounds when there's a real fire, but might miss a small one. Neither is universally right. It depends on the stakes.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      This is a PM decision, not a data science one. For medical diagnostics or fraud detection, maximise recall. Missing a case is worse than a false alarm. For recommendations or notifications, maximise precision. Noise erodes trust. Know which trade-off your feature needs.
+    </div>
+  </div>
+
+  <!-- R -->
+  <h3 class="letter-heading" id="letter-R">R</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Must Know</div>
+    <div class="term-name">RAG: Retrieval-Augmented Generation</div>
+    <div class="term-aka">Also called: retrieval, grounded generation</div>
+    <p class="term-def">Before generating a response, the AI first searches a knowledge base to retrieve relevant documents or data, then uses that retrieved content to inform and ground its answer. This solves two problems: it gives the model access to up-to-date or proprietary information it wasn't trained on, and it reduces hallucination by anchoring responses in real sources.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Instead of answering from memory, the AI first looks things up in your filing cabinet, reads the relevant pages, then gives you an answer based on what it actually found. Much harder to make things up when you're working from a source document.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      RAG is the default starting point for most enterprise AI features. Faster and cheaper than fine-tuning, handles real-time data, and makes responses more explainable. If a user asks "why did you say that?", you can show them the source.
+    </div>
+  </div>
+
+  <!-- S -->
+  <h3 class="letter-heading" id="letter-S">S</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">System Prompt</div>
+    <div class="term-aka">Also called: system message, instructions</div>
+    <p class="term-def">A set of hidden instructions given to an AI at the start of every conversation, before the user says anything. It defines the AI's role, tone, constraints, and behaviour: things like "You are a helpful assistant for a legal firm. Always recommend consulting a qualified solicitor. Never speculate on case outcomes." Users typically don't see the system prompt, but it shapes every response.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      The employee handbook your AI has already read before starting its first shift. It determines how the AI behaves across every customer interaction.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Writing and iterating on your system prompt is one of the highest-leverage things a PM can do. It's the difference between a generic AI and a well-designed product experience.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Supervised & Unsupervised Learning</div>
+    <div class="term-aka">Also called: labelled learning, self-supervised learning, clustering</div>
+    <p class="term-def">Two fundamental approaches to training models. <strong>Supervised learning</strong> trains on labelled data where the correct answers are provided: "this email is spam / not spam." The model learns the pattern between inputs and known outputs. <strong>Unsupervised learning</strong> gives the model raw, unlabelled data and asks it to discover hidden patterns, groupings, or structures on its own, without being told what to look for.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Supervised learning is a teacher marking a student's homework. Correct answers are provided, and the student learns from the feedback. Unsupervised learning is giving a student a box of unlabelled photos and asking them to sort them into groups. They figure out the categories themselves.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      The distinction matters when scoping AI features. Supervised learning needs labelled training data (expensive, but results are predictable). Unsupervised learning can find patterns you didn't know existed, but outputs need interpretation. Ask your team: do we have labelled data, and is it enough?
+    </div>
+  </div>
+
+  <!-- T -->
+  <h3 class="letter-heading" id="letter-T">T</h3>
+
+  <div class="term-card">
+    <div class="term-badge neutral">Nuanced</div>
+    <div class="term-name">Temperature</div>
+    <div class="term-aka">Also called: randomness, creativity setting</div>
+    <p class="term-def">A setting that controls how "creative" or "random" an AI's responses are. Low temperature (near 0) makes responses more predictable, consistent, and conservative. The model picks the most likely word each time. High temperature (near 1 or above) makes responses more varied, creative, and sometimes surprising, or incoherent.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      A dial between "by the book" and "freestyle." For a customer support bot, you want low temperature. For a creative writing assistant, higher temperature produces more interesting results.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Temperature is a product decision, not just a technical one. The right setting depends on your use case. Predictability and creativity are in tension. You can't maximise both.
+    </div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Token</div>
+    <div class="term-aka">Also called: token count, context length</div>
+    <p class="term-def">The basic unit LLMs use to process text. A token is roughly three to four characters, or about three-quarters of a word. "Hello world" is approximately 3 tokens. LLMs have a maximum number of tokens they can process at once, called the context window. Tokens also determine cost. You pay per token sent and received.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Tokens are like the pages of a notepad. The model can only "see" the text that fits on its notepad at once. Anything beyond that gets cut off.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      Token limits affect what you can put in a prompt and what you get back. Longer conversations, documents, and outputs all cost more. Token cost is how you calculate AI unit economics.
+    </div>
+  </div>
+
+  <!-- V -->
+  <h3 class="letter-heading" id="letter-V">V</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Concept</div>
+    <div class="term-name">Vector Database</div>
+    <div class="term-aka">Also called: vector store, embedding store</div>
+    <p class="term-def">A database specifically designed to store and search embeddings. Unlike a traditional database that looks for exact text matches, a vector database finds content based on semantic similarity. Common examples include Pinecone, Weaviate, and pgvector (a Postgres extension). Vector databases are the storage layer that makes RAG work.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      A normal database is a filing cabinet with labelled folders. You have to know exactly what you're looking for. A vector database is a really smart librarian who can say "you asked about X, but these five documents are the most relevant to what you actually need."</div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      If your product needs to search through proprietary documents, knowledge bases, or large content libraries, you'll likely need a vector database. It's infrastructure. Your job is to understand what problem it solves and what the cost implications are.
+    </div>
+  </div>
+
+  <!-- Z -->
+  <h3 class="letter-heading" id="letter-Z">Z</h3>
+
+  <div class="term-card">
+    <div class="term-badge accent">Core Skill</div>
+    <div class="term-name">Zero-shot & Few-shot Prompting</div>
+    <div class="term-aka">Also called: zero-shot inference, few-shot examples, in-context learning</div>
+    <p class="term-def">Two ways of instructing a model. <strong>Zero-shot</strong> gives the model a task with no examples, just the instruction. <strong>Few-shot</strong> provides one or more examples of the input/output pattern you want before asking the model to do it for real. Few-shot prompting is one of the fastest ways to improve output quality without any code changes.</p>
+    <div class="term-analogy">
+      <span class="term-analogy-label">Analogy</span>
+      Zero-shot is asking a new hire to write a customer email without showing them any previous emails. Few-shot is showing them three good examples first and saying "match this tone and structure." The examples do a lot of the work.
+    </div>
+    <div class="term-pm-note">
+      <span class="term-pm-note-label">PM Takeaway</span>
+      When your AI feature isn't producing outputs in the right format or tone, try adding two or three examples directly in your system prompt. It often beats hours of prompt rewording.
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET -->
+  <div class="section-header">
+    <span class="section-num">TL;DR</span>
+    <h2>One-Line Cheat Sheet</h2>
+  </div>
+
+  <div class="callout cheat-sheet">
+    <div class="callout-title">Quick reference</div>
+    <ul>
+      <li><strong>AI Agent</strong> — AI that takes sequences of actions, not just one response</li>
+      <li><strong>Bias</strong> — systematic skew in AI outputs from patterns in training data</li>
+      <li><strong>Chain-of-Thought</strong> — prompt the model to reason step-by-step for better accuracy</li>
+      <li><strong>Context Window</strong> — how much the model can "see" at once</li>
+      <li><strong>Deterministic vs Probabilistic</strong> — predictable same-output vs variable AI-predicted output</li>
+      <li><strong>Embeddings</strong> — turning text into numbers that capture meaning</li>
+      <li><strong>Evals</strong> — automated quality testing for AI outputs</li>
+      <li><strong>Fine-Tuning</strong> — retraining a model on your data; expensive, use sparingly</li>
+      <li><strong>Generative AI</strong> — models that create new content (text, images, code)</li>
+      <li><strong>Guardrails</strong> — rules and filters that constrain what the AI will and won't do</li>
+      <li><strong>Hallucination</strong> — when the model makes things up confidently</li>
+      <li><strong>Hallucination Rate</strong> — % of outputs that are factually wrong</li>
+      <li><strong>Human-in-the-Loop</strong> — humans review or approve AI outputs before real-world impact</li>
+      <li><strong>Inference</strong> — the moment a trained model is used to generate output</li>
+      <li><strong>LLM</strong> — the AI brain that reads and writes text</li>
+      <li><strong>LLMOps</strong> — monitoring and improving AI in production</li>
+      <li><strong>Model Drift</strong> — accuracy degrades over time as real-world data shifts</li>
+      <li><strong>MCP</strong> — universal standard for connecting AI to external tools and data</li>
+      <li><strong>Multimodal</strong> — AI that handles text, images, audio, and more</li>
+      <li><strong>Prompt</strong> — the instruction you send the model</li>
+      <li><strong>Precision & Recall</strong> — trade-off between accuracy of flags vs catching all cases</li>
+      <li><strong>Prompt Injection</strong> — adversarial input designed to hijack the AI's behaviour</li>
+      <li><strong>RAG</strong> — look up real sources before answering; reduces hallucination</li>
+      <li><strong>Supervised & Unsupervised Learning</strong> — training with labelled vs unlabelled data</li>
+      <li><strong>System Prompt</strong> — the hidden instruction that defines your product's AI behaviour</li>
+      <li><strong>Temperature</strong> — controls how predictable vs creative the output is</li>
+      <li><strong>Token</strong> — the unit of text LLMs process; also determines cost</li>
+      <li><strong>Vector Database</strong> — storage for embeddings; enables semantic search</li>
+      <li><strong>Zero-shot / Few-shot</strong> — give the model a task with no examples / show examples first</li>
+    </ul>
+  </div>
+
+</article>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="contact-label">Get in touch</p>
+  <h2>I speak at conferences and work directly with senior leaders on capability and organisational change.</h2>
+  <p>If you're working on product capability, or want to nerd out about AI, feel free to connect on LinkedIn.</p>
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/philiy" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/Philiy-Lan" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Philiy Lander</p>
+  <p>philiy.com</p>
+</footer>
+
+<script>
+(function(){
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  });
+})();
+</script>
+
+</body>
+</html>
